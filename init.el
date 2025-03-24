@@ -11,7 +11,7 @@
 (global-display-line-numbers-mode 1)
 
 ;; Theme stuff
-(load-theme 'deeper-blue t)
+(load-theme 'catppuccin t)
 
 ;; Highlight the current line
 (hl-line-mode t)
@@ -52,3 +52,9 @@
                          ("nongnu" . "https://elpa.nongnu.org/nongnu/")
                          ("melpa". "https://melpa.org/packages/")))
 (package-initialize)
+
+
+;; Keybinds
+;; Overwrite list buffers command to use ibuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+(put 'upcase-region 'disabled nil)
