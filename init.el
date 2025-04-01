@@ -1,60 +1,70 @@
+;; Let's put packages in another file
+(load "packages")
+
+;; And the same for keybindings
+(load "keybindings")
+;; Always ensure each package is installed
+(setopt use-package-always-ensure t)
+
 ;; Turn on the visual bell
-(setq visual-bell t)
+(setopt visual-bell t)
 
 ;; And turn off the audio bell
-(setq ring-bell-function 'ignore)
+(setopt ring-bell-function 'ignore)
 
-;; Turn off the scroll bar
+;; Turn off the scrollbar
 (scroll-bar-mode -1)
 
+;; Turn off the toolbar
+(tool-bar-mode -1)
+
+;; Turn off the menubar
+(menu-bar-mode -1)
+
 ;; Show line numbers
-(global-display-line-numbers-mode 1)
+(setopt line-number-mode nil)
 
-;; Theme stuff
-(load-theme 'catppuccin t)
+;; And column number
+(setopt column-number-mode t)
 
-;; Highlight the current line
-(hl-line-mode t)
+;; Better underlining
+(setopt x-underline-at-descent-line nil)
+
+;; Show trailing whitespace
+(setopt show-trailing-whitespace t)
+
+;; Smooth scrolling
+(pixel-scroll-precision-mode)
+
+;; Turn on which-key
+(which-key-mode)
 
 ;; Turn off the blinking cursor
 (blink-cursor-mode -1)
 
 ;; Show recent files M-x recentf-open-files
 (recentf-mode 1)
-(setq history-length 15)
+(setopt history-length 15)
 (savehist-mode 1)
 
 ;; Remember and restore the last cursor location
 (save-place-mode 1)
 
 ;; Don't open dialog boxs to confirm
-(setq use-dialog-box nil)
+(setopt use-dialog-box nil)
 
 ;; Place customization variables in a seperate file
-(setq custom-file (locate-user-emacs-file "custom-vars.el"))
+(setopt custom-file (locate-user-emacs-file "custom-vars.el"))
 (load custom-file 'noerror 'nomessage)
 
 ;; Revert buffers when the underlying file has changed
 (global-auto-revert-mode 1)
 
 ;; Auto update directory structure when using dired
-(setq global-auto-revert-non-file-buffers t)
+(setopt global-auto-revert-non-file-buffers t)
 
 ;; Set the tab width to 8 spaces
-(setq-default tab-width 8
-	      indent-tabs-mode nil)
+(setopt tab-width 8
+	indent-tabs-mode nil)
 
-(setq c-basic-offsett 4)
-
-;; Set up package repositorys
-(require 'package)
-(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                         ("nongnu" . "https://elpa.nongnu.org/nongnu/")
-                         ("melpa". "https://melpa.org/packages/")))
-(package-initialize)
-
-
-;; Keybinds
-;; Overwrite list buffers command to use ibuffer
-(global-set-key (kbd "C-x C-b") 'ibuffer)
 (put 'upcase-region 'disabled nil)
